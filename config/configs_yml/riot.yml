@@ -1,0 +1,12 @@
+default: &default
+  api_key: 'key'
+  api_url: 'api.riotgames.com'
+  regions:
+    americas: 'americas'
+    na: na1
+test:
+  <<: *default
+development:
+  <<: *default
+production:
+  <<: *default
