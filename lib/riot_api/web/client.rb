@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module RiotApi
   module Web
     class Client
-      include ::RiotApi::Web::Connection
-      include ::RiotApi::Web::Request
+      include ::RiotApi::Web::Http::Connection
+      include ::RiotApi::Web::Http::Request
 
       def initialize(region: :na)
         @region = region
@@ -13,7 +15,6 @@ module RiotApi
       end
 
       class << self
-
         #
         # Defines a resource method that initializes and memoizes an instance of the given class.
         # @param name [Symbol] The name of the resource method to define.
@@ -26,7 +27,6 @@ module RiotApi
           end
         end
       end
-
     end
   end
 end

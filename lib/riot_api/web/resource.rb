@@ -1,6 +1,10 @@
+# frozen_string_literal: true
+
 module RiotApi
   module Web
     class Resource
+      # @note We will need to change this if we want to extract this into a gem since this is Rails specific.
+      class_attribute :base_path, :path, instance_writer: false
       attr_reader :client
 
       def initialize(client)
@@ -10,35 +14,38 @@ module RiotApi
       class << self
 
         #
-        # Sets the base path for the resource.
-        # @param value [String] the base path for the resource
-        # @return [void]
-        def base_path(value)
-          @base_path = value
-        end
-
-        #
         # Defines an endpoint method for the resource.
         # @param name [Symbol] the name of the method
-        # @param path_builder [Proc] a lambda that builds the endpoint path
+        # @param path_template [String] a lambda that builds the endpoint path
         # @param returns [String] the string class to instantiate with the response
         # @param method [Symbol] the HTTP method to use (default: :get)
         # @return [void]
-        def endpoint(name, path_builder, returns:, method: :get)
-          base_path = superclass.instance_variable_get(:@base_path)
+        def endpoint(name, path_template, returns:, method: :get, query_params: [])
+          # @note This only handles Get requests for now because that's all we use currently.
+          define_method(name) do |request|
+            path = path_template % request.path_params
+            url = client.region_url + base_path + self.class.path + path
 
-          # TODO: Custom error here maybe.
-          raise "Base path not defined for resource" unless base_path
+            url += "?#{request.to_query}" unless request.query_params.empty?
 
-          define_method(name) do |*args, **kwargs|
-            url = client.region_url + base_path + path_builder.call(*args, **kwargs)
             response = client.request(method, url:)
-
-            # TODO: Handle errors/response before passing body to return model.
-
             returns.constantize.new(response.body)
           end
         end
+
+
+        # def endpoint(name, path_builder, returns:, method: :get, query_params: [])
+        #   define_method(name) do |*args, **kwargs|
+        #     url = client.region_url + base_path + path + path_builder.call(*args, **kwargs)
+        #
+        #     query = kwargs.slice(*query_params)
+        #     url += "?#{query.to_query}" if query.any?
+        #
+        #     response = client.request(method, url:)
+        #
+        #     returns.constantize.new(response.body)
+        #   end
+        # end
       end
     end
   end
