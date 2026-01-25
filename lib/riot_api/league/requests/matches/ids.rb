@@ -36,11 +36,6 @@ module RiotApi
             { start_time:, end_time:, queue:, type:, start:, count: }.compact
           end
 
-          #
-          # @return [String]
-          def to_query
-            query_params.transform_keys { _1.to_s.camelize(:lower) }.to_query
-          end
         end
 
       end
