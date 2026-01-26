@@ -2,7 +2,7 @@
 
 module RiotApi
   module League
-    class Resource < ::RiotApi::Web::Resource
+    class Endpoint < ::RiotApi::Web::Endpoint
       self.base_path = "/lol"
     end
   end

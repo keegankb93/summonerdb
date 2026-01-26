@@ -14,18 +14,13 @@ module RiotApi
         "https://#{RiotConfig.regions[@region]}.#{RiotConfig.api_url}"
       end
 
-      class << self
-        #
-        # Defines a resource method that initializes and memoizes an instance of the given class.
-        # @param name [Symbol] The name of the resource method to define.
-        # @param klass [String] The class of the resource to instantiate.
-        # @return [void]
-        def resource(name, klass)
-          define_method(name) do
-            ivar = "@#{name}"
-            instance_variable_get(ivar) || instance_variable_set(ivar, klass.constantize.new(self))
-          end
-        end
+      def fetch(endpoint)
+        url = region_url + endpoint.full_path
+        url += "?#{endpoint.to_query}" if endpoint.query_values.any?
+
+        response = request(:get, url:)
+
+        endpoint.model.constantize.new(response.body)
       end
     end
   end
