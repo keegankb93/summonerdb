@@ -2,8 +2,8 @@
 
 module RiotApi
   module League
-    module Models
-      module Matches
+    module Matches
+      module Models
         #
         # Represents a list of match IDs associated with a specific account.
         class List < ::RiotApi::Web::Model

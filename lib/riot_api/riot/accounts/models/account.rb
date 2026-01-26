@@ -2,8 +2,8 @@
 
 module RiotApi
   module Riot
-    module Models
-      module Accounts
+    module Accounts
+      module Models
         #
         # Data representation of the account response from Riot API.
         class Account < ::RiotApi::Web::Model

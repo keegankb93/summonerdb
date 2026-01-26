@@ -92,7 +92,7 @@ module RiotApi
       def handle_property(name, klass, data)
         raise(ArgumentError, "data must be a Hash") unless data.is_a?(Hash)
 
-        value = data[name.to_s.camelize(:lower)]
+        value = data[name.to_s]
 
         return unless value
 
