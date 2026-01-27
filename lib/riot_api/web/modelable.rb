@@ -8,8 +8,6 @@ module RiotApi
       end
 
       module ClassMethods
-        ACCESSOR_TYPES = %i[property collection].freeze
-
         #
         # Defines a property for the model.
         # @param name [Symbol] the name of the property
