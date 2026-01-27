@@ -1,0 +1,30 @@
+# frozen_string_literal: true
+
+module RiotApi
+  module League
+    module Matches
+      module Models
+        #
+        # Represents a team in a match.
+        class Team < ::RiotApi::Web::Model
+
+          #
+          # @!attribute [r] bans
+          # @return [Array<RiotApi::League::Matches::Models::Ban>]
+          collection :bans, "RiotApi::League::Matches::Models::Ban"
+
+          #
+          # @!attribute [r] team_id
+          # @return [Integer]
+          property :team_id
+
+          #
+          # @!attribute [r] win
+          # @return [Boolean]
+          property :win
+
+        end
+      end
+    end
+  end
+end
