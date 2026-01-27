@@ -13,7 +13,7 @@ module RiotApi
         # @param params [RiotApi::League::Matches::Params::IdsByPuuid] Additional query parameters
         # @return [RiotApi::League::Models::Matches::List]
         def ids_by_puuid(puuid, params = nil)
-          get("/lol/match/v5/matches/by-puuid/#{puuid}/ids", RiotApi::League::Matches::Models::List, params)
+          get("/lol/match/v5/matches/by-puuid/#{puuid}/ids", RiotApi::League::Matches::Models::Ids, params)
         end
 
       end

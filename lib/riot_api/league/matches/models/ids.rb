@@ -6,7 +6,7 @@ module RiotApi
       module Models
         #
         # Represents a list of match IDs associated with a specific account.
-        class List < ::RiotApi::Web::Model
+        class Ids < ::RiotApi::Web::Model
 
           #
           # @!attribute match_ids

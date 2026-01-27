@@ -3,20 +3,15 @@
 module RiotApi
   module Web
     class Param
-      class << self
-        # @note We do this so that we can grep these params later and not interfere with instance vars or attr_readers
-        # Register query parameters for the param object
-        # @param params [Array<Symbol>] list of parameter names
-        # @return [void]
-        def query_params(*params)
-          @query_params = params
-          attr_reader(*params)
-        end
+      include Modelable
 
-        #
-        # Get registered query parameters
-        def registered_query_params
-          @query_params ||= []
+      #
+      # Initialize the param object with given attributes
+      # @param attrs [Hash{Symbol => Object}] the attributes to set on the param object
+      # @return [void]
+      def initialize(**attrs)
+        attrs.each do |name, value|
+          instance_variable_set("@#{name}", value) if self.class.properties.include?(name)
         end
       end
 
@@ -26,18 +21,9 @@ module RiotApi
         self.to_h.to_query
       end
 
-      #
-      # Convert the param object to a hash
-      def to_h
-        self.class
-            .registered_query_params
-            .to_h { |param| [param, send(param)] }
-            .compact
-      end
-
       def to_params
         self.class
-            .registered_query_params
+            .properties
             .to_h { |param| [param.to_s.camelize(:lower), send(param)] }
             .compact
       end
