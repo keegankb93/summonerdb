@@ -24,7 +24,7 @@ module RiotApi
       def to_params
         self.class
             .properties
-            .to_h { |param| [param.to_s.camelize(:lower), send(param)] }
+            .to_h { |param| [param.to_s.camelize(:lower), instance_variable_get("@#{param}")] }
             .compact
       end
 
