@@ -31,7 +31,7 @@ module RiotApi
         # @param klass [String, nil] the class of the property if it's a nested model
         # @return [void]
         def property(name, klass = nil, from: nil)
-          properties[name] = { type: :property, klass:, from: from || name.to_s.camelize(:lower) }
+          create_attribute(name, type: :property, klass:, from:)
         end
 
         #
@@ -40,7 +40,19 @@ module RiotApi
         # @param klass [String, nil] the class of the items in the collection if they are nested models
         # @return [void]
         def collection(name, klass = nil, from: nil)
-          properties[name] = { type: :collection, klass:, from: from || name.to_s.camelize(:lower) }
+          create_attribute(name, type: :collection, klass:, from:)
+        end
+
+        #
+        # Creates an attribute definition for the model.
+        # @param name [Symbol] the name of the attribute
+        # @param type [Symbol] the type of the attribute (:property or :collection)
+        # @param klass [String, nil] the class of the attribute if it's a nested
+        # @return [void]
+        def create_attribute(name, type:, klass:, from: nil)
+          raise ArgumentError, "Invalid name: #{name}" unless name.is_a?(Symbol)
+
+          properties[name] = { type:, klass:, from: from || name.to_s.camelize(:lower) }
         end
 
       end
