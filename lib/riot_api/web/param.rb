@@ -11,7 +11,7 @@ module RiotApi
       # @return [void]
       def initialize(**attrs)
         attrs.each do |name, value|
-          instance_variable_set("@#{name}", value) if self.class.properties.include?(name)
+          instance_variable_set("@#{name}", value) if self.class.properties.key?(name)
         end
       end
 

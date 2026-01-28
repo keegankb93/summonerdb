@@ -5,19 +5,18 @@ module RiotApi
     module Matches
       module Models
         #
-        # Represents a banned champion in a match.
+        # Represents stats of the objective.
         # @see https://developer.riotgames.com/apis#match-v5/GET_getMatch
-        class Ban < ::RiotApi::Web::Model
+        class ObjectiveStat < ::RiotApi::Web::Model
+          #
+          # @!attribute first
+          # @return [Boolean]
+          property :first
 
           #
-          # @!attribute [r] championId
+          # @!attribute kills
           # @return [Integer]
-          property :champion_id
-
-          #
-          # @!attribute [r] pick_turn
-          # @return [Integer]
-          property :pick_turn
+          property :kills
 
         end
       end

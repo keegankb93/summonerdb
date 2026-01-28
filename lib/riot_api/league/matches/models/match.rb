@@ -6,6 +6,7 @@ module RiotApi
       module Models
         #
         # Represents a match and its details.
+        # @see https://developer.riotgames.com/apis#match-v5/GET_getMatch
         class Match < ::RiotApi::Web::Model
 
           #

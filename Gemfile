@@ -64,3 +64,5 @@ gem "anyway_config", "~> 2.7"
 gem "faraday", "~> 2.14"
 
 gem "minitest", "~> 6.0"
+
+gem "memory_profiler", "~> 1.1"

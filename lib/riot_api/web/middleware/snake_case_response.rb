@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# TODO: Decide to deprecate or keep, we moved this functionality to the model class
 module RiotApi
   module Web
     module Middleware

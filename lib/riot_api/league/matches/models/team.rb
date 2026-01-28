@@ -6,6 +6,7 @@ module RiotApi
       module Models
         #
         # Represents a team in a match.
+        # @see https://developer.riotgames.com/apis#match-v5/GET_getMatch
         class Team < ::RiotApi::Web::Model
 
           #

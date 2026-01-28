@@ -13,6 +13,12 @@ module RiotApi
         # in the incoming hash of data or an array. If the attribute has a model class defined, it will instantiate
         # that model with the value from the data recursively. Otherwise it will set the value directly on
         # the attribute.
+        #
+        # We should watch this for potential performance issues. Some endpoints from RiotAPI can
+        # return very large payloads with deeply nested structures. Once the root model is instantiated,
+        # it will recursively instantiate all nested models. The models are fairly lightweight, but
+        # if performance becomes a concern we can refactor nested models to be built on-demand when
+        # accessed rather than at initialization time.
         self.class.properties.each do |name, config|
           result = case config[:type]
                    when :property
@@ -47,9 +53,10 @@ module RiotApi
       # @param data [Hash, Array] the incoming data to extract the property from
       # @return [void]
       def build_collection(name, klass, data)
+        key = self.class.properties[name][:from]
         # If data is an array, we assume it's the collection itself.
         # Otherwise, we look for the collection in the hash by the property name.
-        value = data.is_a?(Array) ? data : data[name.to_s]
+        value = data.is_a?(Array) ? data : data[key]
 
         return if value.blank?
 
@@ -72,9 +79,8 @@ module RiotApi
       # @return [void]
       # @raise [ArgumentError] if data is not a Hash
       def build_property(name, klass, data)
-        raise(ArgumentError, "data must be a Hash") unless data.is_a?(Hash)
-
-        value = data[name.to_s]
+        key = self.class.properties[name][:from]
+        value = data[key]
 
         return if value.blank?
 
