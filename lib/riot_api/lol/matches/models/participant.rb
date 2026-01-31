@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RiotApi
-  module League
+  module Lol
     module Matches
       module Models
         #
@@ -70,8 +70,8 @@ module RiotApi
 
           #
           # @!attribute [r] challenges
-          # @return [RiotApi::League::Matches::Models::Challenge]
-          property :challenges, "RiotApi::League::Matches::Models::Challenge"
+          # @return [RiotApi::Lol::Matches::Models::Challenge]
+          property :challenges, "RiotApi::Lol::Matches::Models::Challenge"
 
           #
           # @!attribute [r] inhibitor_kills
@@ -180,8 +180,8 @@ module RiotApi
 
           #
           # @!attribute [r] missions
-          # @return [RiotApi::League::Matches::Models::Mission]
-          property :missions, "RiotApi::League::Matches::Models::Mission"
+          # @return [RiotApi::Lol::Matches::Models::Mission]
+          property :missions, "RiotApi::Lol::Matches::Models::Mission"
 
           #
           # @!attribute [r] neutral_minions_killed
@@ -295,8 +295,8 @@ module RiotApi
 
           #
           # @!attribute [r] perks
-          # @return [RiotApi::League::Matches::Models::Perk]
-          property :perks, "RiotApi::League::Matches::Models::Perk"
+          # @return [RiotApi::Lol::Matches::Models::Perk]
+          property :perks, "RiotApi::Lol::Matches::Models::Perk"
 
           #
           # @!attribute [r] physical_damage_dealt

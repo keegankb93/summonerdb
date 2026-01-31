@@ -7,8 +7,16 @@ module RiotApi
     class Model
       include Modelable
 
-      def initialize(data)
+      #
+      # Initialize the model with raw data.
+      # @param data [Hash, Object] the raw data from the API response
+      # @param cache_on_access [Boolean] whether to cache properties on access
+      # @note unless you're invoking the model directly you cannot set cache_on_access. This is mainly
+      #       here for later use cases where the model may be persisted longer than a pass-through to the db.
+      # @return [void]
+      def initialize(data, cache_on_access: false)
         @data = data
+        @cache_on_access = cache_on_access
       end
 
       #
@@ -18,7 +26,7 @@ module RiotApi
       # @raise [StandardError] if the property is not defined
       def fetch_property(name)
         # Get the property configuration
-        # @example property :metadata, "RiotApi::League::Matches::Models::Metadata", from: "metadata"
+        # @example property :metadata, "RiotApi::Lol::Matches::Models::Metadata", from: "metadata"
         config = self.class.properties[name]
 
         #
@@ -65,10 +73,16 @@ module RiotApi
 
         value = fetch_property(name)
 
-        # Cache the value in an instance variable for future access.
-        instance_variable_set(ivar, value)
+        # Cache the value in an instance variable for future access if allowed.
+        instance_variable_set(ivar, value) if cache_on_access?
 
         value
+      end
+      #
+      # Whether properties should be cached on access.
+      # @return [Boolean] true if properties are cached on access, false otherwise
+      def cache_on_access?
+        @cache_on_access
       end
 
       def respond_to_missing?(name, include_private = false)

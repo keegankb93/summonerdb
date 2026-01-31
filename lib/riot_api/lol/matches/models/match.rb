@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RiotApi
-  module League
+  module Lol
     module Matches
       module Models
         #
@@ -11,13 +11,13 @@ module RiotApi
 
           #
           # @!attribute [r] metadata
-          # @return [RiotApi::League::Matches::Models::Metadata]
-          property :metadata, "RiotApi::League::Matches::Models::Metadata"
+          # @return [RiotApi::Lol::Matches::Models::Metadata]
+          property :metadata, "RiotApi::Lol::Matches::Models::Metadata"
 
           #
           # @!attribute [r] info
-          # @return [RiotApi::League::Matches::Models::Info]
-          property :info, "RiotApi::League::Matches::Models::Info"
+          # @return [RiotApi::Lol::Matches::Models::Info]
+          property :info, "RiotApi::Lol::Matches::Models::Info"
 
         end
       end

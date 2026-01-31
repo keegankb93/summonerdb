@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RiotApi
-  module League
+  module Lol
     module Matches
       module Params
         #

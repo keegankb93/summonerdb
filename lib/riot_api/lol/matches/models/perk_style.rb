@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RiotApi
-  module League
+  module Lol
     module Matches
       module Models
         #
@@ -16,8 +16,8 @@ module RiotApi
 
           #
           # @!attribute [r] selections
-          # @return [Array<RiotApi::League::Matches::Models::PerkStyleSelection>]
-          collection :selections, "RiotApi::League::Matches::Models::PerkStyleSelection"
+          # @return [Array<RiotApi::Lol::Matches::Models::PerkStyleSelection>]
+          collection :selections, "RiotApi::Lol::Matches::Models::PerkStyleSelection"
 
           #
           # @!attribute [r] style

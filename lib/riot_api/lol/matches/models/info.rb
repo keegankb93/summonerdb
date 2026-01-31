@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RiotApi
-  module League
+  module Lol
     module Matches
       module Models
         #
@@ -66,13 +66,13 @@ module RiotApi
 
           #
           # @!attribute [r] participants
-          # @return [Array<RiotApi::League::Matches::Models::Participant>]
-          collection :participants, "RiotApi::League::Matches::Models::Participant"
+          # @return [Array<RiotApi::Lol::Matches::Models::Participant>]
+          collection :participants, "RiotApi::Lol::Matches::Models::Participant"
 
           #
           # @!attribute [r] teams
-          # @return [Array<RiotApi::League::Matches::Models::Team>]
-          collection :teams, "RiotApi::League::Matches::Models::Team"
+          # @return [Array<RiotApi::Lol::Matches::Models::Team>]
+          collection :teams, "RiotApi::Lol::Matches::Models::Team"
 
         end
       end

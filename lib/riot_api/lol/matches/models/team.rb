@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RiotApi
-  module League
+  module Lol
     module Matches
       module Models
         #
@@ -11,8 +11,8 @@ module RiotApi
 
           #
           # @!attribute [r] bans
-          # @return [Array<RiotApi::League::Matches::Models::Ban>]
-          collection :bans, "RiotApi::League::Matches::Models::Ban"
+          # @return [Array<RiotApi::Lol::Matches::Models::Ban>]
+          collection :bans, "RiotApi::Lol::Matches::Models::Ban"
 
           #
           # @!attribute [r] team_id

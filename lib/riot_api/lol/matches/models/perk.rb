@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RiotApi
-  module League
+  module Lol
     module Matches
       module Models
         #
@@ -10,13 +10,13 @@ module RiotApi
         class Perk < ::RiotApi::Web::Model
           #
           # @!attribute [r] stat_perks
-          # @return [RiotApi::League::Matches::Models::PerkStat]
-          property :stat_perks, "RiotApi::League::Matches::Models::PerkStat"
+          # @return [RiotApi::Lol::Matches::Models::PerkStat]
+          property :stat_perks, "RiotApi::Lol::Matches::Models::PerkStat"
 
           #
           # @!attribute [r] styles
-          # @return [Array<RiotApi::League::Matches::Models::PerkStyle>]
-          collection :styles, "RiotApi::League::Matches::Models::PerkStyle"
+          # @return [Array<RiotApi::Lol::Matches::Models::PerkStyle>]
+          collection :styles, "RiotApi::Lol::Matches::Models::PerkStyle"
         end
       end
     end
