@@ -59,7 +59,7 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem "anyway_config", "~> 2.7"
+gem "anyway_config", "~> 2.8"
 
 gem "faraday", "~> 2.14"
 
